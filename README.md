@@ -1,30 +1,7 @@
-# AI Sessions Agenda
+# SIOP 2026 AI Sessions Agenda
 
-Static GitHub Pages site that extracts AI-related accepted sessions from `Accepted Sessions with Submitter Info.xlsx` and displays them in an agenda layout.
+This simple webpage lets you browse the SIOP 2026 sessions that have been flagged (by an AI) that they could be related to AI.
 
-## What it shows
+It lets you save sessions you're interested in and export them (as a CSV or a PDF).
 
-- Session ID
-- Session Title
-- Session Type
-- Main submitter
-- Citation
-- Location
-- Time
-
-## AI filtering
-
-The generator includes a session when:
-
-- the title contains AI-related terms such as `AI`, `LLM`, `machine learning`, `generative AI`, or `automation`
-- or either `Primary Content Area` or `Secondary Content Area` is `Technology/Artificial Intelligence`
-
-## Regenerate data
-
-Run:
-
-```powershell
-py -3 scripts/generate_ai_sessions.py
-```
-
-Then open `index.html` locally or publish the repository to GitHub Pages.
+Visit it here: https://karimhbadr1.github.io/siop_2026_ai_sessions/
