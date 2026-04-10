@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Sessions Agenda</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Conference agenda</p>
+          <h1>AI-related accepted sessions</h1>
+          <p class="lede">
+            A lightweight agenda view filtered from the accepted sessions workbook using AI-related titles and content areas.
+          </p>
+        </div>
+        <div class="stats">
+          <div><span id="sessionCount">0</span><small>sessions</small></div>
+        </div>
+      </section>
+
+      <section class="toolbar">
+        <input id="search" type="search" placeholder="Search title, submitter, citation, location..." />
+        <select id="typeFilter"><option value="">All session types</option></select>
+      </section>
+
+      <section id="dayTabs" class="day-tabs" aria-label="Conference days"></section>
+      <section id="agenda" class="agenda" aria-live="polite"></section>
+    </main>
+
+    <template id="sessionTemplate">
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <p class="meta" data-field="time"></p>
+            <h2 data-field="title"></h2>
+          </div>
+          <span class="pill" data-field="type"></span>
+        </div>
+        <dl class="details">
+          <div><dt>Session ID</dt><dd data-field="session_id"></dd></div>
+          <div><dt>Main submitter</dt><dd data-field="submitter"></dd></div>
+          <div><dt>Location</dt><dd data-field="location"></dd></div>
+          <div><dt>Primary area</dt><dd data-field="primary_area"></dd></div>
+          <div><dt>Secondary area</dt><dd data-field="secondary_area"></dd></div>
+        </dl>
+        <p class="citation" data-field="citation"></p>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
