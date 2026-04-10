@@ -3,31 +3,60 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI Sessions Agenda</title>
+    <title>SIOP 2026 AI Sessions - Conference Planner</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="shell">
       <section class="hero">
         <div>
-          <p class="eyebrow">Conference agenda</p>
-          <h1>AI-related accepted sessions</h1>
+          <p class="eyebrow">Conference planner</p>
+          <h1>SIOP 2026 AI Sessions</h1>
           <p class="lede">
-            A lightweight agenda view filtered from the accepted sessions workbook using AI-related titles and content areas.
+            Browse AI-related accepted sessions, save the ones you want, and export a personal agenda for the conference.
           </p>
         </div>
         <div class="stats">
           <div><span id="sessionCount">0</span><small>sessions</small></div>
+          <div><span id="wishlistCount">0</span><small>saved</small></div>
         </div>
       </section>
 
-      <section class="toolbar">
+      <section class="controls">
+        <div class="view-tabs" role="tablist" aria-label="Views">
+          <button class="view-tab active" data-view="agenda" type="button">Agenda</button>
+          <button class="view-tab" data-view="wishlist" type="button">My Agenda</button>
+        </div>
+      </section>
+
+      <section id="agendaToolbar" class="toolbar">
         <input id="search" type="search" placeholder="Search title, submitter, citation, location..." />
         <select id="typeFilter"><option value="">All session types</option></select>
       </section>
 
-      <section id="dayTabs" class="day-tabs" aria-label="Conference days"></section>
-      <section id="agenda" class="agenda" aria-live="polite"></section>
+      <section id="agendaView" class="layout">
+        <div class="main-column">
+          <section id="dayTabs" class="day-tabs" aria-label="Conference days"></section>
+          <section id="agenda" class="agenda" aria-live="polite"></section>
+        </div>
+      </section>
+
+      <section id="wishlistView" class="wishlist-view" hidden>
+        <aside class="wishlist" aria-label="My agenda">
+          <div class="wishlist-head">
+            <div>
+              <p class="eyebrow">My agenda</p>
+              <h2>Saved sessions</h2>
+            </div>
+            <div class="wishlist-actions">
+              <button id="exportCsv" type="button">Export CSV</button>
+              <button id="printPdf" type="button">Print / PDF</button>
+            </div>
+          </div>
+          <p class="wishlist-copy">Add sessions with the button on each card. Your picks are saved in this browser.</p>
+          <section id="wishlistList" class="wishlist-list"></section>
+        </aside>
+      </section>
     </main>
 
     <template id="sessionTemplate">
@@ -47,6 +76,20 @@
           <div><dt>Secondary area</dt><dd data-field="secondary_area"></dd></div>
         </dl>
         <p class="citation" data-field="citation"></p>
+        <div class="card-actions">
+          <button type="button" class="save-btn" data-action="save">Save to agenda</button>
+        </div>
+      </article>
+    </template>
+
+    <template id="wishlistTemplate">
+      <article class="wish-item">
+        <div>
+          <p class="meta" data-field="time"></p>
+          <h3 data-field="title"></h3>
+          <p class="wish-sub" data-field="type"></p>
+        </div>
+        <button type="button" class="remove-btn" data-action="remove">Remove</button>
       </article>
     </template>
 
