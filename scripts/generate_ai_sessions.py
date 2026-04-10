@@ -164,7 +164,7 @@ def main():
     symposium_rows = [s for s in sessions if s["type"] == "Symposium"]
     import csv
 
-    with REVIEW_OUTPUT.open("w", newline="", encoding="utf-8") as f:
+    with REVIEW_OUTPUT.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(
             f,
             fieldnames=[
